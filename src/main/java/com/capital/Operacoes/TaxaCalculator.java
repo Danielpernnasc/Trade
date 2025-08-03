@@ -12,7 +12,7 @@ import java.util.List;
 
 public class TaxaCalculator {
 
-    public Collection<com.capital.Operacoes.Result> calculateTaxes(List<Operation> operations){
+    public Collection<Result> calculateTaxes(List<Operation> operations){
         List<Result> results = new ArrayList<>();
 
 
@@ -25,25 +25,21 @@ public class TaxaCalculator {
                 double totalCusto = CustoVariado * totalQuantidade + op.unitCost * op.quantity;
                 totalQuantidade += op.quantity;
                 CustoVariado = totalCusto / totalQuantidade;
-                results.add(new Result(0.0, "By of active no pay taxes on buy operations"));
+                results.add(new Result(0.0));
             }else if (op.operation.equals("sell")) {
                 double totalVendasValor = op.unitCost * op.quantity;
                 double totalCustoBase = CustoVariado * op.quantity;
                 double lucro = totalVendasValor - totalCustoBase;
 
-                System.out.println("Venda: valor=" + totalVendasValor + ", custo=" + totalCustoBase + ", lucro=" + lucro
-                        + ", acumuloPerda=" + acumuloPerda);
-
                 if (lucro < 0) {
                     acumuloPerda += -lucro;
-                    results.add(new Result(0.0,
-                            "Prejuízo: nenhum imposto pago, prejuízo acumulado para compensar lucros futuros"));
+                    results.add(new Result(0.0));
                 } else if (totalVendasValor <= 20000.0) {
-                    results.add(new Result(0.0, "Valor total da venda menor ou igual a R$ 20000: isento de imposto"));
+                    results.add(new Result(0.0));
                 } else {
                     double taxa = Math.max(lucro - acumuloPerda, 0.0);
                     acumuloPerda = Math.max(0, acumuloPerda - lucro);
-                    results.add(new Result(taxa * 0.20, "Imposto de 20% sobre o lucro após compensar prejuízos"));
+                    results.add(new Result(0.0));
                 }
 
                 totalQuantidade -= op.quantity;

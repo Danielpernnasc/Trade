@@ -45,12 +45,10 @@ public class Main {
            TaxaCalculator calculator = new TaxaCalculator();
            Collection<Result> resultados  = calculator.calculateTaxes(operations);
 
-               for (Result resultado : resultados) {
-                   System.out.println("Resultado: " + resultado.getTax() + " | " + resultado.getDescription());
-               }
-           }
+            System.out.println(gson.toJson(resultados));
+           
     
-
+        }
    
     }
 }

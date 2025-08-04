@@ -28,9 +28,9 @@ src/
 
 ---
 
-## 🚀 Como executar
+##  Como executar
 
-### ✅ 1. Usando `rodarApp.bat` no Windows
+###  1. Usando `rodarApp.bat` no Windows
 
 1. Abra o **Prompt de Comando** ou **PowerShell**
 2. Navegue até a pasta do projeto
@@ -52,5 +52,11 @@ Terminal	Funciona com mvn compile exec:java?
 **WSL / Linux / macOS**	(desde que Maven esteja instalado)
 
 O terminal pedira para escolher o case case1 ao case9 ou allcases. Digite a opçao e a saida do capital vendio e comprado e a taxa cobrada sera mostrada.
+
+Contado 
+Nome: **Daniel Péricles do Nascimento**
+Github: https://github.com/Danielpernasc
+Linkedin: https://www.linkedin.com/in/danielpericlesnascimento/
+Whatsapp e Telefone: **1196711900**
 
 

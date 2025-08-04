@@ -16,39 +16,39 @@ import java.util.Collection;
 
 public class Main {
     public static void main(String[] args) throws Exception {
-        System.out.println("Iniciando programa..."); // <-- Aqui
+
+        System.out.println("Iniciando programa...");
         String caseName;
         try (Scanner scanner = new Scanner(System.in)) {
-            System.out.print("Digite o case (ex: case1 ao case9): ");
-            caseName = scanner.nextLine();
+            System.out.print("Digite o case (ex: case1 ao case9 ou allcases): ");
+            caseName = scanner.nextLine().trim().toLowerCase();
         }
+
         Gson gson = new Gson();
-      
-       try (FileReader reader = new FileReader("capital.json"))  {
-           JsonObject allCases = gson.fromJson(reader, JsonObject.class);
+        try (FileReader reader = new FileReader("capital.json")) {
+            JsonObject allCases = gson.fromJson(reader, JsonObject.class);
 
-           if (!allCases.has(caseName)) {
-               System.out.println("Case not found!");
-               return;
-           }
-
-           // Removido o caseArray porque não está sendo usado
-           JsonArray caseArray = allCases.getAsJsonArray(caseName);
-           List<Operation> operations = gson.fromJson(caseArray, new TypeToken<List<Operation>>() {
-           }.getType());
-    
-           System.out.println("Operations Reads: " + operations.size());
-           for (Operation op : operations) {
-               System.out.println(op.operation + " " + op.quantity + " " + op.unitCost);
-           }
-
-           TaxaCalculator calculator = new TaxaCalculator();
-           Collection<Result> resultados  = calculator.calculateTaxes(operations);
-
-            System.out.println(gson.toJson(resultados));
-           
-    
+            if (caseName.equals("allcases")) {
+                for (String currentCaseName : allCases.keySet()) {
+                    processCase(gson, allCases, currentCaseName);
+                }
+            } else if (allCases.has(caseName)) {
+                processCase(gson, allCases, caseName);
+            } else {
+                System.out.println("Case inválido.");
+            }
         }
-   
+    }
+
+    private static void processCase(Gson gson, JsonObject allCases, String caseName) {
+        System.out.println("==== " + caseName + " ====");
+        JsonArray caseArray = allCases.getAsJsonArray(caseName);
+        List<Operation> operations = gson.fromJson(caseArray, new com.google.gson.reflect.TypeToken<List<Operation>>(){}.getType());
+
+        TaxaCalculator calculator = new TaxaCalculator();
+        Collection<Result> resultados = calculator.calculateTaxes(operations);
+
+        System.out.println(gson.toJson(resultados));
+        System.out.println();
     }
 }

@@ -39,7 +39,7 @@ public class TaxaCalculator {
                 } else {
                     double taxa = Math.max(lucro - acumuloPerda, 0.0);
                     acumuloPerda = Math.max(0, acumuloPerda - lucro);
-                    results.add(new Result(0.0));
+                    results.add(new Result(taxa * 0.20));
                 }
 
                 totalQuantidade -= op.quantity;

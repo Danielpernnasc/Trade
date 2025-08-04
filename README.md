@@ -55,8 +55,8 @@ O terminal pedira para escolher o case case1 ao case9 ou allcases. Digite a opç
 
 Contado 
 Nome: **Daniel Péricles do Nascimento**
-Github: https://github.com/Danielpernasc
-Linkedin: https://www.linkedin.com/in/danielpericlesnascimento/
-Whatsapp e Telefone: **1196711900**
+Github: **[Github](https://github.com/Danielpernnasc)**
+Linkedin: **[Linkedin](https://www.linkedin.com/in/danielpericlesnascimento/)**
+Whatsapp e Telefone: **11967119004**
 
 
